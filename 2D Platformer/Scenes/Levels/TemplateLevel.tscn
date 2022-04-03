@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/TemplateLevel.gd" type="Script" id=1]
+[ext_resource path="res://resources/TileSet.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/Flag.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/LevelUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/GameCamera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/UI/LevelCompleteUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resources/Decoratives.tres" type="TileSet" id=8]
+[ext_resource path="res://Scenes/Clouds.tscn" type="PackedScene" id=9]
+
+[node name="TemplateLevel" type="Node" groups=["Level"]]
+script = ExtResource( 1 )
+level_complete_scene = ExtResource( 7 )
+
+[node name="LevelUI" parent="." instance=ExtResource( 4 )]
+
+[node name="GameCamera" parent="." instance=ExtResource( 5 )]
+
+[node name="Clouds" parent="GameCamera" instance=ExtResource( 9 )]
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="GroundTilemap" type="TileMap" parent="Tilemaps"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 18, 18 )
+collision_layer = 2
+collision_mask = 5
+format = 1
+
+[node name="Decoratives" type="TileMap" parent="Tilemaps"]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 18, 18 )
+collision_layer = 2
+collision_mask = 5
+format = 1
+
+[node name="ForeGroundTilemap" type="TileMap" parent="Tilemaps"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 18, 18 )
+collision_layer = 2
+collision_mask = 5
+format = 1
+
+[node name="Flag" parent="." instance=ExtResource( 3 )]
+
+[node name="TurtorialBoard" type="Node2D" parent="."]
+
+[node name="Enemy" type="Node2D" parent="."]
+
+[node name="EnemyPathRange" type="Node2D" parent="."]
+
+[node name="EnemyJumpHelper" type="Node2D" parent="."]
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="PlayerRoot" type="Node2D" parent="."]
+
+[node name="Player" parent="PlayerRoot" instance=ExtResource( 6 )]
+position = Vector2( 0, 1 )

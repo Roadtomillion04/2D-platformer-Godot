@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assests/Tiles/tile_0068.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 3.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 5 )
+
+[node name="Spikes" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -9 )
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2( 0, -4 )
+shape = SubResource( 1 )
+
+[node name="EnemyDetectArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectArea"]
+position = Vector2( 0, -5 )
+shape = SubResource( 2 )

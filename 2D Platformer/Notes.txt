@@ -1,0 +1,24 @@
+1. for ui use margin container over control
+2. always use size flags in ui for allignment
+3. emit_signal() can be connected by instancing scene or autoload
+4. use get_tree.get_nodes_in_group(group_name) returns array
+5. edit transition in animation_player is very useful for switching 
+animations automatically when one completed
+6. Always handle game_state(dying, respawn) in Level script
+7. Prefer using signals more than groups, use groups when you
+scene in tree are unknown
+8. Use autoload only for level_switching, screen_transition stuff
+like called by more scripts for easy accessing
+9. autoload a scene node instead script, a scene autoload can be
+called easily by $"/root/scene_name"
+10. Don't ever use reload_current_scene(),
+instead do change_scene(same_index) we also get transition effect
+11. Atlas texture in texture dropdown 
+used for cropping images from sprite-sheet
+12. Animated Texture in texture dropdown used for animating 
+loop animations in ui
+13. Always use area2d to area2d collisons and use kinematic body only for terrain
+or other body collisions
+14. Don't add audio_stream_player.play() in script, try to call it in animation player 
+itself.
+15. Make sure to "make unique" whenever duplicating .tres file and make changes or it'll collapse 

@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/AnimatedButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/UI/BackgroundForUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/Popup_animation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/MainMenu.gd" type="Script" id=7]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource( 7 )
+
+[node name="BackgroundForUI" parent="." instance=ExtResource( 3 )]
+
+[node name="Popup_animation" parent="." instance=ExtResource( 4 )]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+margin_left = 92.0
+margin_top = 21.0
+margin_right = 228.0
+margin_bottom = 159.0
+rect_pivot_offset = Vector2( 68, 69 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+margin_right = 136.0
+margin_bottom = 138.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 124.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 112, 0 )
+custom_constants/separation = 6
+alignment = 1
+
+[node name="StartButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_right = 104.0
+size_flags_horizontal = 4
+text = "START"
+
+[node name="CharacterSelectionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 30.0
+margin_right = 104.0
+margin_bottom = 54.0
+size_flags_horizontal = 4
+text = "CHARACTERS"
+
+[node name="OptionsButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 60.0
+margin_right = 104.0
+margin_bottom = 84.0
+size_flags_horizontal = 4
+text = "OPTIONS"
+
+[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 90.0
+margin_right = 104.0
+margin_bottom = 114.0
+size_flags_horizontal = 4
+text = "QUIT"

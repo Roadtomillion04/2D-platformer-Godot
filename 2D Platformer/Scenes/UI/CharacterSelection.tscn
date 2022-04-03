@@ -1,0 +1,217 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://resources/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/AnimatedButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/UI/AnimatedButton.gd" type="Script" id=3]
+[ext_resource path="res://assests/Characters/character_0003.png" type="Texture" id=4]
+[ext_resource path="res://assests/Characters/character_0009.png" type="Texture" id=5]
+[ext_resource path="res://assests/Characters/character_0005.png" type="Texture" id=6]
+[ext_resource path="res://assests/Characters/character_0000.png" type="Texture" id=7]
+[ext_resource path="res://assests/Characters/character_0002.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/UI/CharacterSelection.gd" type="Script" id=9]
+[ext_resource path="res://assests/Characters/character_0004.png" type="Texture" id=10]
+[ext_resource path="res://assests/Characters/character_0007.png" type="Texture" id=11]
+[ext_resource path="res://assests/Characters/character_0006.png" type="Texture" id=12]
+[ext_resource path="res://assests/Characters/character_0010.png" type="Texture" id=13]
+[ext_resource path="res://assests/Characters/character_0001.png" type="Texture" id=14]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 2
+frame_0/texture = ExtResource( 14 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 2
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=3]
+frames = 2
+frame_0/texture = ExtResource( 6 )
+frame_1/texture = ExtResource( 10 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 2
+frame_0/texture = ExtResource( 11 )
+frame_1/texture = ExtResource( 12 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=5]
+frames = 2
+frame_0/texture = ExtResource( 13 )
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
+
+[node name="CharacterSelection" type="CanvasLayer"]
+script = ExtResource( 9 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 316.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 312, 0 )
+rect_pivot_offset = Vector2( 68, 69 )
+size_flags_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+margin_right = 312.0
+margin_bottom = 172.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+margin_left = 16.0
+margin_top = 12.0
+margin_right = 295.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 112, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 5
+custom_constants/separation = 6
+alignment = 1
+
+[node name="DefaultCharacterButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_top = 124.0
+margin_right = 51.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 51, 24 )
+rect_pivot_offset = Vector2( 25, 12 )
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource( 1 )
+text = "SELECT"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+disable_hover = true
+
+[node name="BlueCharacterButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 57.0
+margin_top = 124.0
+margin_right = 108.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 51, 24 )
+rect_pivot_offset = Vector2( 25, 12 )
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource( 1 )
+text = "SELECT"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+disable_hover = true
+
+[node name="GreenCharacterButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 114.0
+margin_top = 124.0
+margin_right = 165.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 51, 24 )
+rect_pivot_offset = Vector2( 25, 12 )
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource( 1 )
+text = "SELECT"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+disable_hover = true
+
+[node name="OrangeCharacterButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 171.0
+margin_top = 124.0
+margin_right = 222.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 51, 24 )
+rect_pivot_offset = Vector2( 25, 12 )
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource( 1 )
+text = "SELECT"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+disable_hover = true
+
+[node name="YellowCharacterButton" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 228.0
+margin_top = 124.0
+margin_right = 279.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 51, 24 )
+rect_pivot_offset = Vector2( 25, 12 )
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "SELECT"
+disable_hover = true
+
+[node name="CharacterContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+margin_left = 19.0
+margin_top = 61.0
+margin_right = 293.0
+margin_bottom = 111.0
+rect_min_size = Vector2( 112, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 6
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/CharacterContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = SubResource( 1 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/CharacterContainer"]
+margin_left = 56.0
+margin_right = 106.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = SubResource( 2 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/CharacterContainer"]
+margin_left = 112.0
+margin_right = 162.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = SubResource( 3 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/CharacterContainer"]
+margin_left = 168.0
+margin_right = 218.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = SubResource( 4 )
+expand = true
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/CharacterContainer"]
+margin_left = 224.0
+margin_right = 274.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = SubResource( 5 )
+expand = true

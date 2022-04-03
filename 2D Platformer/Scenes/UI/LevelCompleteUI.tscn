@@ -1,0 +1,135 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/LevelCompleteUI.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/AnimatedButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/CoinCounter.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "popup"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/PanelContainer:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 0.9, 0.9 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/PanelContainer:rect_pivot_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 108, 59 ) ]
+}
+
+[node name="LevelCompleteUI" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Popup_animation" type="AnimationPlayer" parent="."]
+autoplay = "popup"
+anims/popup = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+margin_left = 52.0
+margin_top = 30.0
+margin_right = 268.0
+margin_bottom = 149.0
+rect_pivot_offset = Vector2( 108, 59 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+margin_right = 216.0
+margin_bottom = 119.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 208.0
+margin_bottom = 111.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 9.0
+text = "Level Complete!"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 13.0
+margin_right = 200.0
+margin_bottom = 31.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 10.0
+margin_top = 4.0
+margin_right = 88.0
+margin_bottom = 13.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "COINS COLLECTED: "
+
+[node name="CoinCounter" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 132.0
+margin_top = 0.0
+margin_right = 170.0
+margin_bottom = 18.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 35.0
+margin_right = 200.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 12 )
+
+[node name="ReplayButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_left = 52.0
+margin_top = 51.0
+margin_right = 148.0
+margin_bottom = 75.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "REPLAY"
+
+[node name="NextLevelButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_left = 52.0
+margin_top = 79.0
+margin_right = 148.0
+margin_bottom = 103.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "CONTINUE"

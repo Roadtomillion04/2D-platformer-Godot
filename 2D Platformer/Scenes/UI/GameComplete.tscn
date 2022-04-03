@@ -1,0 +1,237 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://resources/theme.tres" type="Theme" id=2]
+[ext_resource path="res://Scenes/UI/AnimatedButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/GameComplete.gd" type="Script" id=4]
+[ext_resource path="res://assests/Characters/character_0000.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=6]
+[ext_resource path="res://resources/Decoratives.tres" type="TileSet" id=7]
+[ext_resource path="res://resources/TileSet.tres" type="TileSet" id=8]
+[ext_resource path="res://Scenes/Clouds.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Flag.tscn" type="PackedScene" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 8 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 15.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6, 6 )
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 9.0
+height = 7.0
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item; // 2d shadder
+// vec3 - rgb & vec4 - rgba
+
+//void fragment() { // like main() in C, I guess
+//	COLOR.rgb = vec3(0, 0, 0); // overwrites a existing texture coordinates with a box
+//}
+
+// export type var       with rgba wheel
+uniform vec4 base_color:hint_color;
+
+void fragment() {
+	vec4 text_color = texture(TEXTURE, UV); // type var = texture() - returns coordinates to apply shader
+	// TEXTURE - particle2d texture, UV - non-transparent color coordinated
+	COLOR.rgba = vec4(base_color.r,
+				      base_color.g, 
+					  base_color.b, 
+					  text_color.a); 
+	// text_color.a we get only non-transparent(sprite) coordinates
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/base_color = Color( 0.352941, 0.823529, 0.54902, 1 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.255435, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0011363 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 8 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "popup"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/PanelContainer:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 0.9, 0.9 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/PanelContainer:rect_pivot_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 68, 31 ) ]
+}
+
+[node name="GameComplete" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="BackgroundForUI" type="Node2D" parent="."]
+
+[node name="Clouds" parent="BackgroundForUI" instance=ExtResource( 15 )]
+
+[node name="Tilemaps" type="Node2D" parent="BackgroundForUI"]
+
+[node name="GroundTilemap" type="TileMap" parent="BackgroundForUI/Tilemaps"]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 18, 18 )
+collision_layer = 2
+collision_mask = 5
+format = 1
+tile_data = PoolIntArray( 196611, 1, 1, 196612, 1, 2, 196613, 1, 3, 196621, 0, 0, 196622, 0, 1, 196623, 0, 1, 196624, 0, 1, 196625, 0, 2, 262147, 1, 131073, 262148, 1, 131074, 262149, 1, 131075, 262157, 0, 131072, 262158, 0, 131073, 262159, 0, 131073, 262160, 0, 131073, 262161, 0, 131074, 524291, 0, 0, 524292, 0, 1, 524293, 0, 1, 524294, 0, 1, 524295, 0, 2, 524300, 0, 0, 524301, 0, 1, 524302, 0, 1, 524303, 0, 1, 524304, 0, 1, 524305, 0, 2, 589827, 0, 131072, 589828, 0, 131073, 589829, 0, 131073, 589830, 0, 131073, 589831, 0, 131074, 589836, 0, 131072, 589837, 0, 131073, 589838, 0, 131073, 589839, 0, 131073, 589840, 0, 131073, 589841, 0, 131074 )
+
+[node name="Decoratives" type="TileMap" parent="BackgroundForUI/Tilemaps"]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 18, 18 )
+collision_layer = 2
+collision_mask = 5
+format = 1
+tile_data = PoolIntArray( 262148, 0, 1, 327684, 0, 65536, 393218, 0, 65538, 393219, 0, 65539, 393220, 0, 131072, 393232, 1, 0, 458756, 0, 131073, 458765, 2, 0, 458766, 2, 1, 458768, 1, 196608 )
+
+[node name="ForeGroundTilemap" type="TileMap" parent="BackgroundForUI/Tilemaps"]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 18, 18 )
+collision_layer = 2
+collision_mask = 5
+format = 1
+tile_data = PoolIntArray( 393218, 1, 196609, 393219, 1, 196611, 393231, 2, 1, 393232, 2, 0, 393233, 2, 2 )
+
+[node name="Flag" parent="BackgroundForUI" instance=ExtResource( 16 )]
+position = Vector2( 296, 56 )
+
+[node name="Player" type="KinematicBody2D" parent="BackgroundForUI" groups=["Player"]]
+position = Vector2( 286, 56 )
+collision_mask = 2
+script = ExtResource( 6 )
+dash_hazard_mask = 32
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BackgroundForUI/Player"]
+position = Vector2( 2, 0 )
+animation = "idle"
+offset = Vector2( 0, -12 )
+flip_h = true
+
+[node name="TerrainCollision" type="CollisionShape2D" parent="BackgroundForUI/Player"]
+position = Vector2( 0, -8 )
+shape = SubResource( 1 )
+
+[node name="CoyoteTimer" type="Timer" parent="BackgroundForUI/Player"]
+wait_time = 0.15
+one_shot = true
+
+[node name="Interactives" type="Area2D" parent="BackgroundForUI/Player"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundForUI/Player/Interactives"]
+position = Vector2( 0, -10 )
+shape = SubResource( 3 )
+
+[node name="HurtBox" type="Area2D" parent="BackgroundForUI/Player"]
+collision_layer = 0
+collision_mask = 96
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundForUI/Player/HurtBox"]
+position = Vector2( 0, -6 )
+shape = SubResource( 4 )
+
+[node name="DashAttackArea" type="Area2D" parent="BackgroundForUI/Player"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundForUI/Player/DashAttackArea"]
+position = Vector2( 0, -11 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="DashParticles" type="Particles2D" parent="BackgroundForUI/Player"]
+show_behind_parent = true
+material = SubResource( 10 )
+position = Vector2( 0, -12 )
+emitting = false
+amount = 15
+lifetime = 0.4
+local_coords = false
+process_material = SubResource( 6 )
+texture = ExtResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+margin_left = 92.0
+margin_top = 58.0
+margin_right = 228.0
+margin_bottom = 121.0
+rect_pivot_offset = Vector2( 68, 31 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+margin_right = 136.0
+margin_bottom = 63.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 124.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 112, 0 )
+custom_constants/separation = 6
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 112.0
+margin_bottom = 9.0
+text = "GAME COMPLETE!"
+align = 1
+
+[node name="ContinueButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_left = 1.0
+margin_top = 15.0
+margin_right = 110.0
+margin_bottom = 39.0
+size_flags_horizontal = 4
+text = "CONTINUE TO MAIN MENU"
+
+[node name="Popup_animation" type="AnimationPlayer" parent="."]
+autoplay = "popup"
+anims/popup = SubResource( 11 )

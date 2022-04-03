@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/AnimatedButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Utils/VolumeRangeController.gd" type="Script" id=3]
+
+[node name="VolumeRangeController" type="HBoxContainer"]
+margin_right = 57.0
+margin_bottom = 21.0
+size_flags_horizontal = 10
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SubtractVolumeButton" parent="." instance=ExtResource( 2 )]
+margin_right = 20.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 20, 0 )
+rect_pivot_offset = Vector2( 10, 10 )
+text = "-"
+disable_hover = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 15.0
+text = "10"
+
+[node name="AddVolumeButton" parent="." instance=ExtResource( 2 )]
+margin_left = 37.0
+margin_right = 57.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 20, 0 )
+rect_pivot_offset = Vector2( 10, 10 )
+text = "+"
+disable_hover = true

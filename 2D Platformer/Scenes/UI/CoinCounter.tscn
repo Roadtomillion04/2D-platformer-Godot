@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assests/Tiles/tile_0151.png" type="Texture" id=1]
+[ext_resource path="res://resources/font_outline.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assests/Tiles/tile_0152.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/UI/CoinCounter.gd" type="Script" id=4]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 2
+fps = 6.0
+frame_0/texture = ExtResource( 1 )
+frame_1/texture = ExtResource( 3 )
+frame_1/delay_sec = 0.0
+
+[node name="CoinCounter" type="HBoxContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 42.0
+margin_bottom = 22.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 18.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 18, 18 )
+size_flags_vertical = 4
+texture = SubResource( 1 )
+expand = true
+
+[node name="CoinLabel" type="Label" parent="."]
+margin_left = 18.0
+margin_top = 2.0
+margin_right = 38.0
+margin_bottom = 15.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 2 )
+text = "0/12"
